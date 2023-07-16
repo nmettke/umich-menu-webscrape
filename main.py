@@ -6,5 +6,6 @@ if '__main__':
     html_bytes = page.read()
     html = html_bytes.decode("utf-8")
     print(html)
+    print("fuzz")
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
