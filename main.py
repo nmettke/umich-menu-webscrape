@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from datetime import date
 
 if __name__ == '__main__':
-    # Date information asd
+    # Date information
     today = date.today()
     d2 = today.strftime("%B %d, %Y")
 

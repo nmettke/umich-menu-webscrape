@@ -7,7 +7,7 @@ if __name__ == '__main__':
     mypassword = "ywterjjwocllpkye"
     server.login(myemail, mypassword)
 
-    # Craft message (note: '\n' denotes line breaks )
+    # Craft message (note: '\n' denotes line breaks)
     fname = 'south_quad.txt'
     with open(fname, 'r') as file:
         message = file.read()
