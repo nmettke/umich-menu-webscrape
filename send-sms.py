@@ -8,7 +8,7 @@ client = Client(account_sid, auth_token)
 
 message = client.messages.create(
   from_='+18559064470',
-  body='Suck my cock chance',
+  body='hi chance',
   to='+17342318482'
 )
 
