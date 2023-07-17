@@ -1,20 +1,26 @@
 import smtplib
 
-server = smtplib.SMTP("smtp.gmail.com", 587)
-server.starttls()
-myemail = "webscraper936@gmail.com"
-mypassword = "ywterjjwocllpkye"
-server.login(myemail, mypassword)
+if __name__ == '__main__':
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    myemail = "webscraper936@gmail.com"
+    mypassword = "ywterjjwocllpkye"
+    server.login(myemail, mypassword)
 
-# Craft message (note: '\n' denotes line breaks)
-message = 'Subject: {}\n\n{}'.format('', 'ready for me to carry you in league?')
+    # Craft message (note: '\n' denotes line breaks)
+    fname = 'south_quad.txt'
+    with open(fname, 'r') as file:
+        message = file.read()
 
-nate = "9174066741"
-annie = "2484137211"
-chance = "7342318482"
+    # message = 'Subject: {}\n\n{}'.format('', '')
 
-verizon = "@vtext.com"
-sprint = "@messaging.sprintpcs.com"
+    nate = "9174066741"
+    annie = "2484137211"
+    chance = "7342318482"
 
-server.sendmail(myemail, nate + verizon, message)
-server.quit()
+    verizon = "@vtext.com"
+    sprint = "@messaging.sprintpcs.com"
+    mint = "@tmomail.net"
+
+    server.sendmail(myemail, nate + verizon, message)
+    server.quit()
