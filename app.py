@@ -5,7 +5,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 app = Flask(__name__)
 
 
-@app.route('/bot', methods=['POST'])
+@app.route('/bot', methods=['GET', 'POST'])
 def bot():
     incoming_msg = request.values.get('Body', '').lower()
     resp = MessagingResponse()
@@ -14,6 +14,9 @@ def bot():
     meal = "no meal"
     responded = False
     helpmsg = "Please enter the dining hall and the meal you want. Ex: \"South Quad Dinner\" " + "\n" + "Here is a list of dining halls: " + "\n" + "Bursley, East Quad, Markley, Mojo, North Quad, South Quad, Twigs"
+
+    print(incoming_msg)
+
     if 'help' in incoming_msg:
         # return a quote
 
@@ -33,19 +36,29 @@ def bot():
         hall = "south-quad"
     elif 'twigs' in incoming_msg:
         hall = "twigs-at-oxford"
-
-    if hall != "no hall":
     else:
-        msg.body("Please respond with a valid hall and meal. Text help for more details.")
+        msg.body("Please respond with a valid hall. Text help for more details.")
         return str(resp)
 
+    if 'breakfast' in incoming_msg:
+        meal = "Breakfast"
+    elif 'lunch' in incoming_msg:
+        meal = "Lunch"
+    elif 'brunch' in incoming_msg:
+        meal = 'Brunch'
+    elif 'dinner' in incoming_msg:
+        meal = 'Dinner'
+    else:
+        msg.body("Please respond with a valid meal. Text help for more details.")
+        return str(resp)
 
+    with open(hall + '-' + meal, 'r') as file:
+        data = file.read()
 
+    msg.body(data)
 
-    if not responded:
-        msg.body('I only know about famous quotes and cats, sorry!')
     return str(resp)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=False)
